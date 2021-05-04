@@ -31,12 +31,16 @@ func main() {
 	*/
 
 	p := ginprometheus.NewPrometheus("gin")
-	p.StatusOverrideFromContext = "code"
+	p.StatusOverrideFromContext = append(p.StatusOverrideFromContext, "code")
+	p.StatusOverrideFromContext = append(p.StatusOverrideFromContext, "mycode")
 	p.Use(r)
 	r.GET("/", func(c *gin.Context) {
 		c.Set("code", "888")
 		c.JSON(200, "Hello world!")
 	})
-
+	r.GET("/test2", func(c *gin.Context) {
+		c.Set("mycode", "999")
+		c.JSON(200, "Hello world!")
+	})
 	r.Run(":29090")
 }
