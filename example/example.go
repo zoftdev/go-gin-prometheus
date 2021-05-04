@@ -34,7 +34,7 @@ func main() {
 	p.StatusOverrideFromContext = "code"
 	p.Use(r)
 	r.GET("/", func(c *gin.Context) {
-
+		c.Set("code", "888")
 		c.JSON(200, "Hello world!")
 	})
 
