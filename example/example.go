@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/mcuadros/go-gin-prometheus"
+	"github.com/zoftdev/go-gin-prometheus"
 
 	"github.com/gin-gonic/gin"
 )
@@ -31,9 +31,10 @@ func main() {
 	*/
 
 	p := ginprometheus.NewPrometheus("gin")
-
+	p.StatusOverrideFromContext = "code"
 	p.Use(r)
 	r.GET("/", func(c *gin.Context) {
+
 		c.JSON(200, "Hello world!")
 	})
 
