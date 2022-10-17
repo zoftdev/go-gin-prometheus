@@ -1,7 +1,9 @@
 package main
 
 import (
-	"github.com/zoftdev/go-gin-prometheus"
+	"fmt"
+
+	ginprometheus "github.com/zoftdev/go-gin-prometheus"
 
 	"github.com/gin-gonic/gin"
 )
@@ -34,7 +36,9 @@ func main() {
 	p.StatusOverrideFromContext = append(p.StatusOverrideFromContext, "code")
 	p.StatusOverrideFromContext = append(p.StatusOverrideFromContext, "mycode")
 	p.Use(r)
-	r.GET("/", func(c *gin.Context) {
+	r.GET("/:hlex", func(c *gin.Context) {
+
+		fmt.Println(c.FullPath())
 		c.Set("code", "888")
 		c.JSON(200, "Hello world!")
 	})

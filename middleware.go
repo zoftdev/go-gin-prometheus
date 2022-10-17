@@ -385,7 +385,8 @@ func (p *Prometheus) HandlerFunc() gin.HandlerFunc {
 		elapsed := float64(time.Since(start)) / float64(time.Second)
 		resSz := float64(c.Writer.Size())
 
-		url := p.ReqCntURLLabelMappingFn(c)
+		// url := p.ReqCntURLLabelMappingFn(c)
+		url := c.FullPath()
 		// jlambert Oct 2018 - sidecar specific mod
 		if len(p.URLLabelFromContext) > 0 {
 			u, found := c.Get(p.URLLabelFromContext)
